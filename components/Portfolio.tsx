@@ -38,12 +38,11 @@ const Portfolio = () => {
   return (
     <section id="proyectos" className="py-24 bg-zinc-50 dark:bg-zinc-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+        <div className="mb-16">
           <div>
             <h2 className="text-sm font-bold tracking-widest text-accent uppercase mb-2">Nuestro Trabajo</h2>
             <p className="text-4xl md:text-5xl font-bold dark:text-white">Proyectos Destacados</p>
           </div>
-          <a href="#" className="text-accent font-bold hover:underline">Ver todos los proyectos →</a>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
