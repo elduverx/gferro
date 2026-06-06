@@ -1,15 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    type: 'Reforma Integral',
+    type: 'Reformas Integrales',
     message: ''
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    const handleServiceSelected = (event: Event) => {
+      const service = (event as CustomEvent<string>).detail;
+      setFormData((current) => ({ ...current, type: service }));
+      setStatus('idle');
+    };
+
+    window.addEventListener('service-selected', handleServiceSelected);
+    return () => window.removeEventListener('service-selected', handleServiceSelected);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +35,7 @@ const Contact = () => {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', phone: '', type: 'Reforma Integral', message: '' });
+        setFormData({ name: '', phone: '', type: 'Reformas Integrales', message: '' });
       } else {
         setStatus('error');
       }
@@ -54,7 +65,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 font-bold uppercase">Llámanos</p>
-                  <p className="text-lg font-bold dark:text-white">+34 000 000 000</p>
+                  <a href="tel:+34611810588" className="text-lg font-bold dark:text-white hover:text-accent transition-colors">
+                    611 810 588
+                  </a>
                 </div>
               </div>
               
@@ -79,7 +92,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 font-bold uppercase">Ubicación</p>
-                  <p className="text-lg font-bold dark:text-white">Alicante / Benidorm, España</p>
+                  <p className="text-lg font-bold dark:text-white">Toda la Comunidad Valenciana</p>
                 </div>
               </div>
             </div>
@@ -135,10 +148,13 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                     className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-700 rounded-xl px-4 py-3 focus:outline-none focus:border-accent transition-colors appearance-none"
                   >
-                    <option>Reforma Integral</option>
-                    <option>Reforma de Cocina</option>
-                    <option>Pack Reforma Baño</option>
-                    <option>Otros Servicios</option>
+                    <option>Reformas Integrales</option>
+                    <option>Cocinas de Diseño</option>
+                    <option>Reforma de Baños</option>
+                    <option>Servicios Técnicos</option>
+                    <option>Rehabilitación</option>
+                    <option>Interiorismo y Acabados</option>
+                    <option>Otro proyecto</option>
                   </select>
                 </div>
                 <div>

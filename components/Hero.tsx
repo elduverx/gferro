@@ -1,19 +1,21 @@
 import React from 'react';
-import Image from 'next/image';
 
 const Hero = () => {
   return (
     <section className="relative h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Image Placeholder */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10" />
-        <Image 
-          src="/salon.png" 
-          alt="Reforma de lujo" 
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/salon.png"
+          aria-hidden="true"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white w-full">
